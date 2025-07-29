@@ -26,7 +26,7 @@ class Solution:
                 
                 i += 1
                 j += 1
-        print("ok") 
+        print("updated") 
         return ans 
     
     

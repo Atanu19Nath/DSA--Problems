@@ -26,8 +26,9 @@ class Solution:
                 
                 i += 1
                 j += 1
-                
-        return ans
+        print("ok") 
+        return ans 
+    
     
 obj = Solution()
 

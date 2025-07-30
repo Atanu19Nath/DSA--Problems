@@ -1,5 +1,3 @@
-#User function Template for python3
-
 class Solution:
     def removeConsecutiveCharacter(self, s):
         # code here

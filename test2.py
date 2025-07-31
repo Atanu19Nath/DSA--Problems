@@ -1,15 +1,41 @@
-from collections import Counter
+#User function Template for python3
+import string
 
-arr= [1,3,2,3,4]
+class Solution:
+    def reverse(self, s):
+        # code here
 
+        special_char = string.punctuation
 
-ans = Counter(arr)
+        k = 0
 
-print(ans)
+        list = []
+        for i in s:
+            list.append(i)
+        
+        j = len(list)-1
 
-for i in range(len(ans)):
+        while k < j :
 
-    if ans[arr[i]] > 1:
+            if list[k] not in special_char and list[j] not in special_char:
 
-        print(arr[i])
-        break
+                list[k],list[j] = list[j],list[k]
+                k +=1
+                j -=1
+            elif list[k] in special_char:
+
+                k +=1
+            elif list[j] in special_char:
+
+                j -=1
+
+        ans = ""
+
+        for i in list:
+            ans = ans + i
+            
+        return ans
+
+s = Solution()
+
+print(s.reverse("A&X#"))

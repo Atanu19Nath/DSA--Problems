@@ -1,29 +1,31 @@
-class Solution:
-    # Function to find the maximum product of any two adjacent elements in the array.
-    def maxValue(self, arr):
-        #code here
 
-        i = 0
+import string
+def txt(s):
+    lowercase_text = s.lower()
+    list = []
 
-        j = len(arr)-1
+    special_char = string.punctuation
 
-        maxi = float('-inf')
+    for i in lowercase_text:
+        if i == ' ' or i in special_char:
+            continue
 
-        while i < j:
+        list.append(i)
 
-            mini = min(arr[i],arr[j])
+    print(list)
 
-            ans = abs(i - j) * mini
-            maxi = max(maxi,ans)
+    i = 0
+    j = len(list) -1
 
-            if arr[i] < arr[j]:
-                i +=1
+    while(i < j):
 
-            elif arr[j]< arr[i]:
-                j-=1
+        if list[i] != list[j]:
+            return False
+        i +=1
+        j -=1
 
-        return maxi
+    return True
 
-s =Solution()
 
-print(s.maxValue([8, 1, 9, 4]))
+
+print(txt("h0!PnNp)0!H"))

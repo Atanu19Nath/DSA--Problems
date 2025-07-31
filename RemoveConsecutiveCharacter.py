@@ -5,7 +5,7 @@ class Solution:
             return s
             
         result = [s[0]]
-        
+          
         j = 1
         
         while j < len(s):

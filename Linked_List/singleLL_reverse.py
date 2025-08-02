@@ -82,7 +82,48 @@ class singlyll:
                 self.head = None
         else:
             print("empty")
+    
+    def reverse_using_stack(self):
 
+        stack = []
+
+        if self.head == None:
+
+            print("empty")
+        else:
+
+            current = self.head
+
+            while current != None:
+                stack.append(current)
+
+                current = current.next
+
+            self.head = stack.pop()
+            tail = self.head
+
+            
+            while len(stack) > 0:
+
+                next_node = stack.pop()
+
+                tail.next = next_node
+                tail = next_node
+                tail.next = None
+
+    def reverse_using_pointer(self):
+
+        pre = None
+        current = self.head
+
+        while current:
+
+            next_node = current.next
+            current.next = pre
+            pre = current
+            current = next_node
+        
+        self.head = pre
 
     def display(self):
 
@@ -103,21 +144,31 @@ class singlyll:
         
         print()
 
+
+        
 s = singlyll()
 
-s.insert_begin(100)                 # 1. Insertion at Beginning
-s.insert_begin(80)
-s.insert_begin(70)
-s.insert_begin(50)
+s.insert_begin(50)                 
 s.insert_begin(40)
+s.insert_begin(30)
+s.insert_begin(20)
+s.insert_begin(10)
 
-print("before deletion from end")
-s.display()   
 
-print("after deletion from end") 
-s.del_end()                          # 2. Delete from end
-s.display()   
+# Reverse by using stack : 
+# Time complexity - O(n) , Space Complexity - O(n)
+print("before reverse [stack implementation]")
+s.display()  
+print("After reverse [stack implementation]")
+s.reverse_using_stack()
 
-print("after deletion from begin")   # 3. Delete from begining
-s.del_begin()
-s.display()   
+# Reverse by using pointer : 
+# Time complexity - O(n) , Space Complexity - O(1)     {Most effective }
+# print("before reverse [pointer implementation]")
+print("before reverse [pointer implementation]")
+s.display() 
+print("After reverse [pointer implementation]")
+s.reverse_using_pointer()
+s.display()
+
+

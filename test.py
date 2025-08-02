@@ -1,49 +1,39 @@
-class Solution:
-    def celebrity(self, arr):
-        # code here
+class Node:
+    def __init__(self,data):
+        self.data = data
+        self.next = None
 
-        if len(arr) == 1:
+class singlyll:
 
-            return 0
-        
-        list = {}
+    def __init__(self):
+        self.head = None
+        self.tail = None
 
-        print(arr)
+    def insert_begin(self,data):
 
-        for i in range(0,len(arr)):
+        new_node = Node(data)
 
-            list[i] = 1
+        if self.head == None:
+            head = new_node
+            tail = new_node
+        else:
+            tail.next = new_node
+            tail = new_node
 
-            for j in range(0,len(arr[i])):
+    
+    def display(self):
 
-                if j != i and arr[i][j] == 1:
-                    list[i] = list[i] + 1
-            
+        current = self.head
 
+        while current != None:
 
-        print(list) 
-          
-        for i in list:
+            print(current.data)
 
-            print(i, list[i])
+            current = current,next
 
 
-        for i in list:
+s = singlyll()
 
-        
-            if list[i] == 1:
+s.insert_begin(10)
 
-               return i
-
-        
-        return -1    
-
-s = Solution()
-
-arr = [
-    [1, 1, 1],
-    [0, 1, 0],
-    [1, 0, 1]
-]
-
-print(s.celebrity(arr))
+s.display

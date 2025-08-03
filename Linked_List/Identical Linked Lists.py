@@ -1,10 +1,3 @@
-'''
-# Node Class    
-class Node:
-    def __init__(self, val):
-        self.data = val
-        self.next = None
-'''
 class Solution:
     def areIdentical(self, head1, head2):
         # Code here

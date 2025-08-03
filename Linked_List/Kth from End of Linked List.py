@@ -1,12 +1,4 @@
-'''
-	{
-		# Node Class
-		class Node:
-		    def __init__(self, data):   # data -> value stored in node
-		        self.data = data
-		        self.next = None
-	}
-'''
+
 class Solution:
     def getKthFromLast(self, head, k):
         #code here

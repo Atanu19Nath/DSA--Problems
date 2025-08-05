@@ -1,7 +1,7 @@
 class Solution:
     def maxLen(self, arr):
         prefix_sum = 0
-        max_len = 0
+        maxi = 0
         seen = {}
 
         for i in range(len(arr)):
@@ -23,8 +23,7 @@ class Solution:
                 seen[prefix_sum] = i
 
         print(seen)
-        return max_len
-
+        return maxi
 s = Solution()
 
 arr = [1, 0, 1, 1, 1, 0, 0]

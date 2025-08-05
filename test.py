@@ -1,31 +1,31 @@
-class Solution:
-    def maxLen(self, arr):
-        prefix_sum = 0
-        maxi = 0
-        seen = {}
+def longest_subarray(arr, sum):
 
-        for i in range(len(arr)):
-            # Replace 0 with -1
-            if arr[i] == 0:
-                arr[i] = -1
+    prefix_sum ={}
 
-        print(arr)
+    longest = float('-inf')
+    
+    c_sum = 0
+    for i in range(0,len(arr)):
 
-        for i in range(len(arr)):
-            prefix_sum += arr[i]
+        c_sum = c_sum + arr[i]
 
-            if prefix_sum == 0:
-                max_len = i + 1
+        if c_sum == sum:
 
-            if prefix_sum in seen:
-                max_len = max(max_len, i - seen[prefix_sum])
-            else:
-                seen[prefix_sum] = i
+            longest  = max(longest,i + 1)
+            print("first=",longest)
 
-        print(seen)
-        return maxi
-s = Solution()
+        elif c_sum - sum in prefix_sum:
+             
+            longest = max(longest, i+1)
+            print("second = ",longest)
+        
+        else:
 
-arr = [1, 0, 1, 1, 1, 0, 0]
+            prefix_sum[c_sum] = i
 
-print(s.maxLen(arr))
+      
+    return longest
+
+arr = [1,-1,1,1,1,-1,-1]
+
+print(longest_subarray(arr,0))

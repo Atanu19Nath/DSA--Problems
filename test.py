@@ -1,12 +1,32 @@
-l = [5 ,2 ,4 ,2]
+class Solution:
+    def maxLen(self, arr):
+        prefix_sum = 0
+        max_len = 0
+        seen = {}
 
+        for i in range(len(arr)):
+            # Replace 0 with -1
+            if arr[i] == 0:
+                arr[i] = -1
 
-s = set()
-result = []
-for i in l:
+        print(arr)
 
-    if i not in s:
-        result.append(i)
-        s.add(i)
+        for i in range(len(arr)):
+            prefix_sum += arr[i]
 
-print(result)
+            if prefix_sum == 0:
+                max_len = i + 1
+
+            if prefix_sum in seen:
+                max_len = max(max_len, i - seen[prefix_sum])
+            else:
+                seen[prefix_sum] = i
+
+        print(seen)
+        return max_len
+
+s = Solution()
+
+arr = [1, 0, 1, 1, 1, 0, 0]
+
+print(s.maxLen(arr))

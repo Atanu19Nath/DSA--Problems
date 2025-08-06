@@ -1,97 +1,54 @@
+from collections import Counter
 
 class Solution:
-    def findMaxSubarraySum(self, arr, x):
-        # Your code goes here
+    def countSubstr (self, str, k):
+        # Code here
         
-        c_sum = 0
+        mp = {}
         
-        start = 0
+        count  = 0
         
-        maxi = float('-inf')
+        arr = []
+        
+        for i in str:
+            
+            arr.append(i)
+        
+        print(arr)
+        start  = 0
         
         for end in range(len(arr)):
             
-            c_sum = c_sum + arr[end]
-            
-            if c_sum <= x :
+            if arr[end] in mp:
                 
-                maxi = max(maxi,c_sum)
-                print("maximum =",maxi)
-
-            while c_sum > x:
-
-                c_sum = c_sum - arr[start]
-
-                start +=1
-
-            
+                mp[arr[end]] +=1
                 
-        return maxi
+            if arr[end] not in mp:
+                
+                mp[arr[end]] = 1
+        
+            while len(mp)  == k:
+                
+                count +=1
+                
+                mp[arr[start]] -=1
+                
+                if mp[arr[start]] == 0:
+                    
+                    del mp[arr[start]]
+                start += 1
+        
+        mp2 = Counter(arr)
+
+        if len(mp2) == k :
+
+            count +=1
+
+        return count
     
+
+
 s = Solution()
 
-arr = [1, 2, 3, 4, 5]
-x = 11 
-
-print(s.findMaxSubarraySum(arr,x))
-                
-                
-            
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        # i = 0
-        # j = 0
-        
-        # sum = 0
-        # maxi = float('-inf')
-        
-        # while (j < len(arr)):
-            
-        #     if sum + arr[j] <= x:
-                
-        #         sum = sum + arr[j]
-        #         maxi = max(maxi, sum) 
-        #         j +=1
-            
-        #     elif sum + arr[j] > x:
-
-                
-        #         sum = sum - arr[i]
-                
-        #         i +=1
-        
-            
-        
-        # return maxi
-            
+str = "zatpvvsnhx"
+print(s.countSubstr(str,1))

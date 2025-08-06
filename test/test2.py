@@ -1,54 +1,62 @@
-#User function Template for python3
+from collections import Counter
 
 class Solution:
-    def smallestSubstring(self, s):
+    def countSubstr (self, str, k):
         # Code here
         
-        list1 = []
+        mp = {}
         
-    
-        for i in s:
-            list1.append(int(i))
-    
-    
-        k = 3
-        mp1 = {1:1,0:1,2:1}
-        mp2 = {}
-        small = float('inf')
-        start = 0
-    
-        for end in range(len(list1)):
-    
-            if list1[end] not in mp2:
-                    
-                mp2[list1[end]] = 1
-                    
-            elif list1[end] in mp2: 
-    
-                mp2[list1[end]] += 1   
-    
-            print(mp2)
-            while len(mp1) == len(mp2):
-                
-                if mp1 == mp2:
-    
-                    small = min(small, end - start+1)
+        count  = 0
         
-                mp2[list1[start]] -= 1 
-                
-                if mp2[list1[start]] == 0:
+        arr = []
         
-                    del mp2[start]
-                    
-                start +=1
+        for i in str:
+            
+            arr.append(i)
+        
+        # print(arr)
+        start  = 0
+        
+        for end in range(len(arr)):
+            
+            if arr[end] in mp:
                 
+                mp[arr[end]] +=1
+                
+            if arr[end] not in mp:
+                
+                mp[arr[end]] = 1
+        
+            if len(mp)  == k:
+                
+                count +=1
+                
+            while len(mp) > k:
+                
+                mp[arr[start]] -=1
+                
+                if mp[arr[start]] == 0:
+                    
+                    del mp[arr[start]]
 
-        return small
-                
+                    count +=1
+                    
+                start += 1
+
+            
+            
+        # mp2 = Counter(arr)
+
+        # if len(mp2) == k :
+
+        #     count +=1
+
+        return count
+    
+
+
 s = Solution()
 
-str = "1210"
 
-print(s.smallestSubstring(str))
-
-
+str = "aabcbebebe"
+print(s.countSubstr(str,1))

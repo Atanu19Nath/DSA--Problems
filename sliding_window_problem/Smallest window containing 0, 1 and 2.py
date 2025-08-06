@@ -27,27 +27,27 @@ class Solution:
     
                 mp2[list1[end]] += 1   
     
-            print(mp2)
+    
             while len(mp1) == len(mp2):
                 
-                if mp1 == mp2:
-    
-                    small = min(small, end - start+1)
+                small = min(small, end - start+1)
         
                 mp2[list1[start]] -= 1 
                 
                 if mp2[list1[start]] == 0:
         
-                    del mp2[start]
+                    del mp2[list1[start]]
                     
                 start +=1
                 
+        if small == float('inf'):
+            return -1
+        else:
+            return small
 
-        return small
-                
 s = Solution()
 
-str = "1210"
+str = "10212"
 
 print(s.smallestSubstring(str))
 

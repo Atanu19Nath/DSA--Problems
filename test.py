@@ -1,27 +1,97 @@
+
 class Solution:
-    def canSplit(self, arr):
-        #code here
+    def findMaxSubarraySum(self, arr, x):
+        # Your code goes here
         
-        
-        mp = []
         c_sum = 0
         
-        for i in range(len(arr)):
+        start = 0
+        
+        maxi = float('-inf')
+        
+        for end in range(len(arr)):
             
-            c_sum = c_sum + arr[i]
+            c_sum = c_sum + arr[end]
             
-            mp.append(c_sum)
-            
-        print(mp)
+            if c_sum <= x :
+                
+                maxi = max(maxi,c_sum)
+                print("maximum =",maxi)
 
-        if mp[len(arr)-1] / 2 in mp:
+            while c_sum > x:
+
+                c_sum = c_sum - arr[start]
+
+                start +=1
+
             
-            return True
-            
-        return False
+                
+        return maxi
     
 s = Solution()
 
-arr = [1, 2, 3, 4, 5, 5]
+arr = [1, 2, 3, 4, 5]
+x = 11 
 
-print(s.canSplit(arr))
+print(s.findMaxSubarraySum(arr,x))
+                
+                
+            
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        # i = 0
+        # j = 0
+        
+        # sum = 0
+        # maxi = float('-inf')
+        
+        # while (j < len(arr)):
+            
+        #     if sum + arr[j] <= x:
+                
+        #         sum = sum + arr[j]
+        #         maxi = max(maxi, sum) 
+        #         j +=1
+            
+        #     elif sum + arr[j] > x:
+
+                
+        #         sum = sum - arr[i]
+                
+        #         i +=1
+        
+            
+        
+        # return maxi
+            

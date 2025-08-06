@@ -12,16 +12,9 @@ class Solution:
             
             mp.append(c_sum)
             
-        print(mp)
-
+        
         if mp[len(arr)-1] / 2 in mp:
             
             return True
             
         return False
-    
-s = Solution()
-
-arr = [1, 2, 3, 4, 5, 5]
-
-print(s.canSplit(arr))

@@ -1,7 +1,12 @@
-s = "abc"
+txt = "GeeksForGeeks"
+pat = "For"
 
-for i in range(len(s)):
+# for i in range(len(txt)):
 
-    for j in range(i+1,len(s)+1):
+if pat in txt:
 
-        print(s[i:j])
+    print("yes")
+
+    ind = txt.index(pat)
+
+    print(ind)

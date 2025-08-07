@@ -50,4 +50,4 @@ s = Solution()
 s1 = "ae"
 s2 = "acbaudeq"
 print(s.substrWithVowels(s1,s2))       
-                
+            

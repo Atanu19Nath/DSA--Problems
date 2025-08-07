@@ -1,12 +1,20 @@
-txt = "GeeksForGeeks"
-pat = "For"
+s1 = "geeksforgeeks"
+s2 = "geeksquiz"
 
-# for i in range(len(txt)):
+set1 = set(s1)
+set2 = set(s2)
+s = ""
+for i in set1:
+            
+    if i not in s2:
+                
+        s = s + i
+                
+for i in set2:
+            
+    if i not in s1:
+                
+        s = s + i
 
-if pat in txt:
 
-    print("yes")
-
-    ind = txt.index(pat)
-
-    print(ind)
+print(s)

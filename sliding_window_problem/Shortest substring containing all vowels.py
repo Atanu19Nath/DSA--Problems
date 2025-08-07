@@ -41,12 +41,13 @@ class Solution:
                     del mp2[s2[start]]
                 start +=1
                     
-        
-        return mini
+        if mini == float('inf'):
+            return -1
+        else:
+            return mini
 
 s = Solution()
 s1 = "ae"
 s2 = "acbaudeq"
 print(s.substrWithVowels(s1,s2))       
                 
-        

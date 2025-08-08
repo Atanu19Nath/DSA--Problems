@@ -1,52 +1,56 @@
-from collections import Counter
-
 class Solution:
-    def substrWithVowels(self, s1, s2):
-        # code here
+    def countSubarrays(self, arr, k):
+        # Code here
         
         
-        start = 0
-        count = 0
-        mp1 = Counter(s1)
-        mp2 = {}
-        set1 = set()
-        mini = float('inf')
+        set1 = []
         
-        for end in range(len(s2)):
-            
-            if s2[end] in mp2:
-                
-                mp2[s2[end]] +=1
-            else:
-                
-                mp2[s2[end]] = 1
-                
-            
-            if s2[end] in mp1:
-                
-                set1.add(s2[end])
-                
-            while len(set1) == len(mp1):
-                
-                mini = min(mini, end- start +1)
-                
-                mp2[s2[start]] -= 1
-                
-                if mp2[s2[start]] == 0:
-                
-                    if s2[start] in mp1:
-                        
-                        set1.remove(s2[start])
-                    
-                    del mp2[s2[start]]
-                start +=1
-                    
-        
-        return mini
+        count_sa = 0
+        for start in range(len(arr)):
 
-s = Solution()
-s1 = "ae"
-s2 = "acbaudeq"
-print(s.substrWithVowels(s1,s2))       
+            mp = {}
+            count = 0
+            
+            for end in range(start,len(arr)):
                 
-        
+                if arr[end] not in mp:
+                    
+                    mp[arr[end]] = 1
+                else:
+                    
+                    mp[arr[end]] +=1
+                
+                if arr[end] % 2 != 0:
+                    
+                    count +=1
+                    
+                while count == k:
+                    
+                    if [start,end] not in set1:
+                        
+                        set1.append([start,end])
+
+                        count_sa +=1  
+
+                    
+                    mp[arr[start]] -= 1  #
+                            
+                    if mp[arr[start]] == 0: #
+                            
+                        if arr[start] % 2!=0: #
+                                
+                            count -=1      #
+                            
+                        del mp[arr[start]]  #
+                        
+                    
+                    start +=1    
+                
+        return count_sa
+    
+s = Solution()
+
+arr = [2, 2, 5, 6, 9, 2, 11]
+k = 2
+
+print(s.countSubarrays(arr,k))

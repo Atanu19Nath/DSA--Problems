@@ -1,20 +1,32 @@
-s1 = "geeksforgeeks"
-s2 = "geeksquiz"
+class Solution:
+    def countSubarrays(self, arr, k):
+        # Code here
+    
+        
+        
 
-set1 = set(s1)
-set2 = set(s2)
-s = ""
-for i in set1:
-            
-    if i not in s2:
-                
-        s = s + i
-                
-for i in set2:
-            
-    if i not in s1:
-                
-        s = s + i
+        count_sa = 0
+        for start in range(len(arr)):
 
+            count = 0
 
-print(s)
+            for end in range(start, len(arr)):
+
+                if arr[end]  % 2 != 0:
+
+                    count +=1
+
+                if count == k:
+
+                    count_sa +=1
+   
+                        
+        return count_sa
+    
+
+s = Solution()
+
+arr = [2, 2, 5, 6, 9, 2, 11]
+k = 2
+
+print(s.countSubarrays(arr,k))

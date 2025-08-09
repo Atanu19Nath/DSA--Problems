@@ -1,56 +1,63 @@
 class Solution:
-    def countSubarrays(self, arr, k):
-        # Code here
+    def minRemovals(self, arr, k):
+        # code here
         
-        
-        set1 = []
-        
-        count_sa = 0
-        for start in range(len(arr)):
+        tsum = 0
+        for i in range(len(arr)):
 
-            mp = {}
-            count = 0
+            tsum = tsum + arr[i]
+
+        target = tsum - k
+
+        if target == 0:
+             
+            return len(arr)
+
+        start = 0
+
+        length = 0
+        
+        csum = 0
+
+        size = len(arr)
+
+        for end in range(len(arr)):
+
+            csum = csum + arr[end]
+
+            while csum > target:
+
+                csum = csum - arr[start]
+
+                start +=1
+
+            if csum == target :
+
+                length = max(length,end -start + 1)
+        
+
+
+        print(length)
+
+        if length == 0:
+            return -1
+        else:
+            return size - length
+
+
+
+
+
             
-            for end in range(start,len(arr)):
-                
-                if arr[end] not in mp:
-                    
-                    mp[arr[end]] = 1
-                else:
-                    
-                    mp[arr[end]] +=1
-                
-                if arr[end] % 2 != 0:
-                    
-                    count +=1
-                    
-                while count == k:
-                    
-                    if [start,end] not in set1:
-                        
-                        set1.append([start,end])
-
-                        count_sa +=1  
-
-                    
-                    mp[arr[start]] -= 1  #
-                            
-                    if mp[arr[start]] == 0: #
-                            
-                        if arr[start] % 2!=0: #
-                                
-                            count -=1      #
-                            
-                        del mp[arr[start]]  #
-                        
-                    
-                    start +=1    
-                
-        return count_sa
-    
 s = Solution()
+arr = [
+    8828, 9581, 49, 9818, 9974, 9869, 9991, 10000, 10000, 10000,
+    9999, 9993, 9904, 8819, 1231, 6309, 
+]
 
-arr = [2, 2, 5, 6, 9, 2, 11]
-k = 2
+k = 134365
 
-print(s.countSubarrays(arr,k))
+# arr = [5, 3, 4, 6, 2]
+# k = 6
+
+print(s.minRemovals(arr,k))

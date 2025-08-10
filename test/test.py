@@ -1,76 +1,27 @@
-class Solution:
-    def longestUniqueSubstr(self, s):
+def binarysum(arr,k):
+    
+    count = 0
+    
+    for i in range(len(arr)):
+         
+        sum = arr[i]
+        for j in range(i+1,len(arr)):
 
+            sum = sum + arr[j]
 
-        set1 = set()
+            if sum == k:
 
-        start = 0
+                count = count + 1
 
-        length = float('-inf')
-
-        for end in range( len(s)):
-
-            while s[end] in set1:
-
-                set1.remove(s[start])
-
-                start +=1
-
-            set1.add(s[end])   
-
-            length = max(length,end-start+1)
-
-        return length
-
+    print(count)
+            
+            
 
             
 
 
-        
-s = Solution()
+arr = [1,0,1,0,1]
 
-str = "cadbzazbcd"
+k = 2
 
-print(s.longestUniqueSubstr(str))
-
-
-
-
-
-
-
-
-# BRUTE FORCE METHOD  O(N2)
-
-# class Solution:
-#     def longestUniqueSubstr(self, s):
-        
-#         count = 0
-
-#         maxlen = float('-inf')
-
-#         for i in range(len(s)):
-
-#             s1 = s[i] 
-#             for j in range(i+1, len(s)):
-
-
-#                 if s[j] in s1:
-#                     break
-
-#                 s1 = s1 + s[j]
-                
-#                 maxlen = max(maxlen,j - i + 1)
-            
-#         print(maxlen)
-
-
-            
-
-
-        
-# s = Solution()
-
-# str = "cadbzazbcd"
-
-# s.longestUniqueSubstr(str)
+binarysum(arr,k)

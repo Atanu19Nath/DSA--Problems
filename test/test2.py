@@ -1,36 +1,38 @@
-def target(arr,target):
-
-    tsum = 0
-
-    start = 0
+def binarysum(arr,k):
     
-    lenght = 0
+    count = 0
+    csum = 0
 
-    for end in range(len(arr)):
+    prefix = {}
 
-        tsum = tsum + arr[end]
+       
+    for j in range(len(arr)):
 
-        while tsum > k:
 
-            tsum = tsum - arr[start]
+        csum = csum + arr[j]
 
-            start -= 1
+        if csum == k:
+
+            count +=1
+
+        if csum - k in prefix:
+            
+            count = count + prefix[csum-k]
+
+        if csum in prefix:
+
+            prefix[csum] +=1
+        
+        if csum not in prefix:
+
+            prefix[csum] = 1
 
         
-        if tsum == target:
+        
+    print(count)
 
-            lenght = max(lenght, end - start + 1)
+arr = [1,0,1,0,1]
 
-    print(lenght)
-            
-# s = Solution()
+k = 2
 
-arr = [6, 3 ,1 ,2 ,10, 10]
-k = 12
-# print(s.minRemovals(arr,k))        
-
-
-target(arr,k)
-
-
-
+binarysum(arr,k)

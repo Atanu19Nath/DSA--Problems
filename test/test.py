@@ -1,63 +1,76 @@
 class Solution:
-    def minRemovals(self, arr, k):
-        # code here
-        
-        tsum = 0
-        for i in range(len(arr)):
+    def longestUniqueSubstr(self, s):
 
-            tsum = tsum + arr[i]
 
-        target = tsum - k
-
-        if target == 0:
-             
-            return len(arr)
+        set1 = set()
 
         start = 0
 
-        length = 0
-        
-        csum = 0
+        length = float('-inf')
 
-        size = len(arr)
+        for end in range( len(s)):
 
-        for end in range(len(arr)):
+            while s[end] in set1:
 
-            csum = csum + arr[end]
-
-            while csum > target:
-
-                csum = csum - arr[start]
+                set1.remove(s[start])
 
                 start +=1
 
-            if csum == target :
+            set1.add(s[end])   
 
-                length = max(length,end -start + 1)
-        
+            length = max(length,end-start+1)
 
-
-        print(length)
-
-        if length == 0:
-            return -1
-        else:
-            return size - length
-
-
-
+        return length
 
 
             
+
+
+        
 s = Solution()
-arr = [
-    8828, 9581, 49, 9818, 9974, 9869, 9991, 10000, 10000, 10000,
-    9999, 9993, 9904, 8819, 1231, 6309, 
-]
 
-k = 134365
+str = "cadbzazbcd"
 
-# arr = [5, 3, 4, 6, 2]
-# k = 6
+print(s.longestUniqueSubstr(str))
 
-print(s.minRemovals(arr,k))
+
+
+
+
+
+
+
+# BRUTE FORCE METHOD  O(N2)
+
+# class Solution:
+#     def longestUniqueSubstr(self, s):
+        
+#         count = 0
+
+#         maxlen = float('-inf')
+
+#         for i in range(len(s)):
+
+#             s1 = s[i] 
+#             for j in range(i+1, len(s)):
+
+
+#                 if s[j] in s1:
+#                     break
+
+#                 s1 = s1 + s[j]
+                
+#                 maxlen = max(maxlen,j - i + 1)
+            
+#         print(maxlen)
+
+
+            
+
+
+        
+# s = Solution()
+
+# str = "cadbzazbcd"
+
+# s.longestUniqueSubstr(str)

@@ -1,55 +1,27 @@
-class Solution:
-    def minRemovals(self, arr, k):
-        # code here
-        
-        lsum = 0
-        rsum = 0
-        mincount = 0
-        
-        i = 0
+def maxfruit(arr):
+     
 
-        size = len(arr) -1
 
-        while lsum < k and i < size:
+    maxcount = 0
+
+    for i in range(len(arr)):
+
+        set1 = set()
+
+        for j in range(i,len(arr)):
+
+            set1.add(arr[j])
             
-            lsum = lsum + arr[i]
-
-            i +=1
-
-        if lsum == k:
-
-            mincount = i
-
-
-        r = size -1 
-
-        s = i -1
-
-        while lsum > 0:
-
-
-            rsum = rsum + arr[r]
-
-            while lsum + rsum > k:
-
-                lsum = lsum - arr[s]
-
-                s-=1 
-
-            
-            if lsum + rsum == k:
+            if len(set1) > 2 :
+                break
                 
-                mincount = min(mincount, i+1+size-r+1)
+            maxcount = max(maxcount,j-i+1)
 
-            r -=1
+    print(maxcount)
+            
+        
 
-        return mincount
-            
-            
-            
-            
-s = Solution()
 
-arr = [6, 3 ,1 ,2 ,10, 10]
-k = 20
-print(s.minRemovals(arr,k))
+arr = [1,2,3,2,2]
+
+maxfruit(arr)

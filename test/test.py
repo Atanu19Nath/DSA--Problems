@@ -1,27 +1,31 @@
-def binarysum(arr,k):
-    
-    count = 0
-    
-    for i in range(len(arr)):
-         
-        sum = arr[i]
-        for j in range(i+1,len(arr)):
+class Solution:
+    def longestOnes(self, arr,k):
 
-            sum = sum + arr[j]
+        maxlength = 0
 
-            if sum == k:
+        for i in range(len(arr)):
+     
+            countzero = 0
 
-                count = count + 1
+            if arr[i]  == 0:
 
-    print(count)
-            
-            
+                countzero +=1
+                
+            for j in range(i+1,len(arr)):
 
-            
+                if arr[j] == 0:
 
+                    countzero +=1
+                    
+                if countzero == k:
 
-arr = [1,0,1,0,1]
+                    maxlength = max(maxlength,j-i+1)
+   
 
-k = 2
+        print(maxlength)
+        
+arr = [0,0,1,1,0,0,1,1,1,0,1,1,0,0,0,1,1,1,1]
+k = 3
+s = Solution()
 
-binarysum(arr,k)
+s.longestOnes(arr,k)

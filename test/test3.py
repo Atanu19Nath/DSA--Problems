@@ -1,27 +1,23 @@
-def longestKSubstr(s,k):
-    
-    maxlength = 0
-    for i in range(len(s)):
+def problem(arr,k):
+   
+    list2 = []
 
-        set1 = set()
+    for i in range(len(arr)):
 
-        for j in range(i, len(s)):
+        list1 = []
+        for j in range(i,len(arr)):
 
-            set1.add(s[j])
+            list1.append(arr[j])
+   
+            if j - i + 1 == k:
+                print(list1)
+                print(max(list1))
+                list2.append(max(list1))
 
-            if len(set1) > 3:
- 
-                break
-            
-            maxlength = max(maxlength, j - i + 1)
-            
-
-    
-    print(maxlength)
+    print(list2)        
 
 
-
-s = "aabacbebebe"
+arr = [1, 2, 3, 1, 4]
 k = 3
 
-longestKSubstr(s,k)
+problem(arr,k)

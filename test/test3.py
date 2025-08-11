@@ -1,27 +1,27 @@
-def maxfruit(arr):
-     
-
-
-    maxcount = 0
-
-    for i in range(len(arr)):
+def longestKSubstr(s,k):
+    
+    maxlength = 0
+    for i in range(len(s)):
 
         set1 = set()
 
-        for j in range(i,len(arr)):
+        for j in range(i, len(s)):
 
-            set1.add(arr[j])
-            
-            if len(set1) > 2 :
+            set1.add(s[j])
+
+            if len(set1) > 3:
+ 
                 break
-                
-            maxcount = max(maxcount,j-i+1)
-
-    print(maxcount)
             
-        
+            maxlength = max(maxlength, j - i + 1)
+            
+
+    
+    print(maxlength)
 
 
-arr = [1,2,3,2,2]
 
-maxfruit(arr)
+s = "aabacbebebe"
+k = 3
+
+longestKSubstr(s,k)

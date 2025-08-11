@@ -30,13 +30,8 @@ def longestKSubstr(s,k):
         if len(mp) == k:
         
             maxlength = max(maxlength, end-start+1)
-        
-            
-
     
     print(maxlength)
-
-
 
 s = "aabacbebebe"
 k = 3

@@ -1,36 +1,35 @@
-def problem(arr,k):
-   
-    list2 = []
-
-    list1 = []
-
+def counter(arr,k):
     start = 0
 
-    maxlength = float('-inf')
+    mp = {}
     
+    product = 1
+
+    count = 0
+
     for end in range(len(arr)):
 
-            list1.append(arr[end])
-   
-            if end - start + 1 == k:
-    
-                maxlength = max(list1)
-                list2.append(maxlength)
-                 
-                if list1[0] == maxlength:
-                      
-                      maxlength = max(list1)
-                  
-                list1.pop(0)
-                start +=1
+        product = product * arr[end]
 
-    print(list2)        
+        while product > k:
 
+            product = product/arr[start]
 
-# arr = [1, 2, 3, 1, 4]
-# k = 3
+            start +=1
+        
 
-arr = [8, 5, 10, 7, 9, 4, 15, 12]
-k = 4
+        count = count + end - start +1
 
-problem(arr,k)
+    print(count)
+        
+            
+            
+
+# arr = [1, 9, 2, 8, 6, 4, 3]
+
+# k =100
+k = 10
+arr = [1, 2, 3, 4]
+counter(arr,k)
+            
+      

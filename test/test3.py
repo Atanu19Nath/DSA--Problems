@@ -1,32 +1,35 @@
-def problem(arr,k):
+def problem(arr,a,b):
+     
 
-    count = 0
-    
+    maxsum = float('-inf') 
     for i in range(len(arr)):
 
         list1 = []
 
-        product = 1
+        csum = 0
 
         for j in range(i,len(arr)):
-
-            product = product * arr[j]
-
-            list1.append(arr[j])    
+             
+            csum = csum + arr[j]
+            list1.append(arr[j])
             
-            if product <=k:
-                count = count + 1
+            if len(list1) >= a and len(list1) <=b:
+
+                maxsum = max(csum,maxsum)
                 print(list1)
 
-    print(count)
+        print(maxsum)
+
+# arr = [-1, 3 , -1, -2, 5, 3, -5, 2, 2]
+
+# a = 3
+# b = 5
+arr = [1, 1, -8, 8, 10, -2, 4, 7, -7, 8, 3, 6, -9]
+a = 2
+b = 6
 
 
-
-# arr = [1, 9, 2, 8, 6, 4, 3]
-
-# k =100
-
-k = 10
-arr = [1, 2, 3, 4]
-
-problem(arr,k)
+# arr = [4, 5, -1, -2, 6]
+# a = 2
+# b = 4
+problem(arr,a,b)

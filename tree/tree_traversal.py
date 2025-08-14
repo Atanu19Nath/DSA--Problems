@@ -34,23 +34,13 @@ def inorder(root):
     inorder(root.right)
 
 def preorder(root):
-    
-    list1 = []
+
     if root == None:
-        return []
+        return
     
-    list1.append(root.data)
-    list2 = preorder(root.left)
-
-    for i in list2:
-        list1.append(i)
-
-    list3 = preorder(root.right)
-
-    for i in list3:
-        list1.append(i)
-
-    return list1
+    print(root.data, end=" ")
+    preorder(root.left)
+    preorder(root.right)
     
 def postorder(root):
 
@@ -66,7 +56,17 @@ def levelorder(root):
     if root == None:
         return 
     
+    print(root.data,end=" ")
+
+    if root.left:
+        print(root.left.data)
+    if root.right:
+        print(root.right.data)
     
+    levelorder(root.left)
+    levelorder(root.right)
+
+
 
 
 
@@ -79,7 +79,7 @@ for val in values:
 print("Inorder traversal after insertion:")
 inorder(root)
 print("\npreorder traversal after insertion:")
-print(preorder(root))
+preorder(root)
 print("\npostorder traversal after insertion:")
 postorder(root)
 

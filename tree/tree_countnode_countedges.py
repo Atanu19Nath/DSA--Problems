@@ -33,32 +33,43 @@ def inorder(root):
 
     inorder(root.right)
 
-def preorder(root):
+def countnode(root):
 
     if root == None:
-        return
+        
+        return 0
     
-    print(root.data, end=" ")
-    preorder(root.left)
-    preorder(root.right)
     
-def postorder(root):
+    left = countnode(root.left)
+    right = countnode(root.right)
+
+    return 1 + left + right
+
+def countedge(root):
 
     if root == None:
-        return
-    postorder(root.left)
-    postorder(root.right)
-
-    print(root.data, end=" ")
-
-def levelorder(root):
-
-    if root == None:
-        return 
+        return 0
     
+    right = 0
+
+    left = 0
+
+    if root.right:
+
+        right = 1+ countedge(root.right)
+
+    if root.left:
+
+        left = 1+ countedge(root.left)
+
+
+    return left + right
+    
+
     
 
 
+   
 
 root = None
 values = [50, 30, 20, 40, 70, 60, 80]
@@ -68,14 +79,7 @@ for val in values:
 
 print("Inorder traversal after insertion:")
 inorder(root)
-print("\npreorder traversal after insertion:")
-preorder(root)
-print("\npostorder traversal after insertion:")
-postorder(root)
-
-print("\nlevelorder traversal after insertion:")
-print(levelorder(root))
 
 
-
-    
+print(countnode(root))
+print(countedge(root))

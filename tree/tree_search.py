@@ -33,31 +33,23 @@ def inorder(root):
 
     inorder(root.right)
 
-def preorder(root):
 
-    if root == None:
-        return
+def search(val,root):
+
+    if root == None :
+        return False
+
+    if root.data == val:
+
+        return True
     
-    print(root.data, end=" ")
-    preorder(root.left)
-    preorder(root.right)
+    if val < root.data:
+        
+        return search(val,root.left)
     
-def postorder(root):
+    if val > root.data:
 
-    if root == None:
-        return
-    postorder(root.left)
-    postorder(root.right)
-
-    print(root.data, end=" ")
-
-def levelorder(root):
-
-    if root == None:
-        return 
-    
-    
-
+        return search(root.right)
 
 
 root = None
@@ -68,14 +60,8 @@ for val in values:
 
 print("Inorder traversal after insertion:")
 inorder(root)
-print("\npreorder traversal after insertion:")
-preorder(root)
-print("\npostorder traversal after insertion:")
-postorder(root)
 
-print("\nlevelorder traversal after insertion:")
-print(levelorder(root))
-
+print(search(40,root))
 
 
     

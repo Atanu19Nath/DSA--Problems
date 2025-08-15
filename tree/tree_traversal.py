@@ -51,12 +51,18 @@ def postorder(root):
 
     print(root.data, end=" ")
 
-def levelorder(root):
+def iterative_preorder(root):
+    if not root:
+        return
+    stack = [root]
+    while stack:
+        node = stack.pop()
+        print(node.data)
+        if node.right:
+            stack.append(node.right)
+        if node.left:
+            stack.append(node.left)
 
-    if root == None:
-        return 
-    
-    
 
 
 
@@ -73,8 +79,8 @@ preorder(root)
 print("\npostorder traversal after insertion:")
 postorder(root)
 
-print("\nlevelorder traversal after insertion:")
-print(levelorder(root))
+print("\n preorder iterative")
+print(iterative_preorder(root))
 
 
 

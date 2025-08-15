@@ -64,12 +64,40 @@ def countedge(root):
 
 
     return left + right
+
+def countLeafNodes(root):
+        # add code here
+        
+        if root == None:
+            
+            return 0
+        
+        if root.right == None and  root.left == None:
+
+            return 1          
+            
+        return countLeafNodes(root.left) + countLeafNodes(root.right) 
+
+def countNonLeafNodes(root):
+        # add code here
+        
+        if root == None:
+            
+            return 0
+            
+        count = 0
+        
+        
+        if root.right or root.left:
+            
+            
+            count = 1 + countNonLeafNodes(root.left) + countNonLeafNodes(root.right) 
+        
+        
+        return count
+            
     
 
-    
-
-
-   
 
 root = None
 values = [50, 30, 20, 40, 70, 60, 80]
@@ -79,7 +107,12 @@ for val in values:
 
 print("Inorder traversal after insertion:")
 inorder(root)
+print()
 
 
-print(countnode(root))
-print(countedge(root))
+print("total node = ",countnode(root))
+print("total edge = ",countedge(root))
+
+print("total leafnode = ",countLeafNodes(root))
+
+print("total nonleaf node = ",countNonLeafNodes(root))

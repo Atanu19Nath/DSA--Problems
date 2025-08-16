@@ -1,91 +1,70 @@
-class Node:
-
-    def __init__(self,data):
-        self.data = data
-        self.left = None
-        self.right = None
-
-def insert(root,val):
-
-    if root == None:
-
-        root = Node(val)
-        return root
+def dfs(start, graph, visited):
     
-    elif val < root.data:
+    parent = -1 
+    stack = [(start,parent)]
+    while stack:
 
-        root.left = insert(root.left,val)
+        current, parent = stack.pop()
 
-    elif val > root.data:
+        if current not in visited:
 
-        root.right = insert(root.right,val)
+            visited.add(current)
+            
+            for i in reversed(graph[current]):
+                    
+                    if i not in visited:
+                        
+                        stack.append((i,current))
+                        
+                    elif i != parent :
+
+                        return True
+
+    return False
+
+
+
+def get_component(edge):
+
+    # STEP1: CREATE A GRAPH USING EDGE
+
+    graph = {}
+
+    for u,v in edge:
+
+        if u not in graph:
+
+            graph[u] =[]
+
+        if v not in graph:
+
+            graph[v] = []
+
+        graph[u].append(v)
+        graph[v].append(u)
     
-    return root
+    for i in graph:
 
-def inorder(root):
-
-    if root == None:
-        return 
-    
-    inorder(root.left)
-     
-    print(root.data, end=" ")
-
-    inorder(root.right)
-
-def preorder(root):
-    
-    list1 = []
-    if root == None:
-        return []
-    
-    list1.append(root.data)
-    list2 = preorder(root.left)
-
-    for i in list2:
-        list1.append(i)
-
-    list3 = preorder(root.right)
-
-    for i in list3:
-        list1.append(i)
-
-    return list1
-    
-def postorder(root):
-
-    if root == None:
-        return
-    postorder(root.left)
-    postorder(root.right)
-
-    print(root.data, end=" ")
-
-def levelorder(root):
-
-    if root == None:
-        return 
-    
-    
+        print(i, " : ",graph[i])
 
 
+    #STEP 2 : GET COMPONENTS
 
-root = None
-values = [50, 30, 20, 40, 70, 60, 80]
+    visited = set()
 
-for val in values:
-    root = insert(root, val)
+    for node in graph:
 
-print("Inorder traversal after insertion:")
-inorder(root)
-print("\npreorder traversal after insertion:")
-print(preorder(root))
-print("\npostorder traversal after insertion:")
-postorder(root)
+        if node not in visited:
 
-print("\nlevelorder traversal after insertion:")
-print(levelorder(root))
+            result = dfs(node,graph,visited)
 
+            if result:
+                return result 
 
+    return False
 
-    
+# edge = [[0,1],[0,2],[0,3],[4,5],[5,6]]
+
+edge = [[0,1],[1,2],[2,3],[3,0]]
+
+print(get_component(edge))

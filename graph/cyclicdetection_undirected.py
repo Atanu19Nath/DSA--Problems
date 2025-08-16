@@ -15,9 +15,7 @@ def dfs(start, graph, visited):
             result.append(current)
 
             for i in reversed(graph[current]):
-
-                if i not in visited:
-
+                    
                     stack.append(i)
 
     return result
@@ -56,6 +54,8 @@ def get_component(edge):
     for node in graph:
 
         if node not in visited:
+
+
 
             result = dfs(node,graph,visited)
 

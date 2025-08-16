@@ -1,31 +1,106 @@
-class Solution:
-    def longestOnes(self, arr,k):
 
-        maxlength = 0
 
-        for i in range(len(arr)):
+class Node:
+
+    def __init__(self,data):
+        self.data = data
+        self.left = None
+        self.right = None
+
+def insert(root,val):
+
+    if root == None:
+
+        root = Node(val)
+        return root
+    
+    elif val < root.data:
+
+        root.left = insert(root.left,val)
+
+    elif val > root.data:
+
+        root.right = insert(root.right,val)
+    
+    return root
+
+def inorder(root):
+
+    if root == None:
+        return 
+    
+    inorder(root.left)
      
-            countzero = 0
+    print(root.data, end=" ")
 
-            if arr[i]  == 0:
+    inorder(root.right)
 
-                countzero +=1
-                
-            for j in range(i+1,len(arr)):
+def preorder(root):
 
-                if arr[j] == 0:
+    if root == None:
+        return
+    
+    print(root.data, end=" ")
+    preorder(root.left)
+    preorder(root.right)
+    
+def postorder(root):
 
-                    countzero +=1
-                    
-                if countzero == k:
+    if root == None:
+        return
+    postorder(root.left)
+    postorder(root.right)
 
-                    maxlength = max(maxlength,j-i+1)
-   
+    print(root.data, end=" ")
 
-        print(maxlength)
-        
-arr = [0,0,1,1,0,0,1,1,1,0,1,1,0,0,0,1,1,1,1]
-k = 3
-s = Solution()
+def iterative_preorder(root):
+    if not root:
+        return
+    stack = [root]
+    while stack:
+        node = stack.pop()
+        print(node.data,end= " ")
+        if node.right:
+            stack.append(node.right)
+        if node.left:
+            stack.append(node.left)
 
-s.longestOnes(arr,k)
+
+def inorderIterative(root):
+    stack = []
+    current = root
+    
+    while True:
+        if current:
+            stack.append(current)
+            current = current.left
+        elif stack:
+            current = stack.pop()
+            print(current.data, end=" ")  # print instead of storing
+            current = current.right
+        else:
+            break
+
+
+root = None
+values = [50, 30, 20, 40, 70, 60, 80]
+
+for val in values:
+    root = insert(root, val)
+
+print("Inorder traversal after insertion:")
+inorder(root)
+print("\npreorder traversal after insertion:")
+preorder(root)
+print("\npostorder traversal after insertion:")
+postorder(root)
+
+print("\n preorder iterative")
+print(iterative_preorder(root))
+
+print("\n inorder iterative")
+inorderIterative(root)
+
+
+
+    

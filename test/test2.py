@@ -1,68 +1,41 @@
-def dfs(start, graph, visited):
+class Solution:
+    def zeroFilledSubarray(self,nums):
+
+        count = 0
+
+        list1 = {}
+
+        start = 0
 
 
-    stack = [start]
-
-    result = []
-  
-    while stack:
-
-        current = stack.pop()
-
-        if current not in visited:
-
-            visited.add(current)
-            result.append(current)
-
-            for i in reversed(graph[current]):
-
-                if i not in visited:
-
-                    stack.append(i)
-
-    return result
+        for end in range(len(nums)):
 
 
+            if nums[end] == 0:
 
-def get_component(edge):
+                count = count + end - start + 1
 
-    # STEP1: CREATE A GRAPH USING EDGE
+            elif nums[end] != 0:
 
-    graph = {}
+                while nums[end] != 0:
 
-    for u,v in edge:
+                    end +=1
 
-        if u not in graph:
+                    if end !
 
-            graph[u] =[]
 
-        if v not in graph:
+        return count
 
-            graph[v] = []
 
-        graph[u].append(v)
-        graph[v].append(u)
     
-    for i in graph:
 
-        print(i, " : ",graph[i])
+s = Solution()
+
+# nums = [0,0,0,2,0,0]
+
+# nums = [1,3,0,0,2,0,0,4]
+
+nums = [2,10,2019]
 
 
-    #STEP 2 : GET COMPONENTS
-
-    visited = set()
-    component = []
-
-    for node in graph:
-
-        if node not in visited:
-
-            result = dfs(node,graph,visited)
-
-            component.append(result)
-
-    return component
-
-edge = [0,1],[0,2],[0,3],[4,5],[5,6]
-
-print(get_component(edge))
+print(s.zeroFilledSubarray(nums))

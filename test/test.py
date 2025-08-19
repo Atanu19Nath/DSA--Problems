@@ -1,15 +1,55 @@
-import heapq
+class Solution:
+    def lengthOfLongestSubstring(self, s: str) -> int:
 
-nums = [(5,'a'),(3,'b'),(8,'c'),(1,'d')]
 
-heapq.heapify(nums)
-heapq.heappush(nums,(4,'e'))   # converts list into a min-heap
-print(nums)
 
-heapq.heappush(nums,(10,'t'))
+        set1 = set()
 
-print(nums)
+        start = 0
 
-ans = heapq.heappop(nums)
+        max_count = 0
 
-print(ans)
+        for end in range(len(str)) :
+        
+        
+            if str[end] in set1:
+
+                while str[end] in set1:
+
+                    set1.remove(str[start])
+
+                    start +=1
+
+                set1.add(str[end])
+
+            if str[end] not in set1:
+
+                set1.add(str[end])
+
+            
+            
+            max_count = max(max_count,end-start+1)
+
+
+
+        return max_count
+        
+
+
+
+
+
+# str = "abcabcbb"
+
+# str = "bbbbb"
+
+str = "pwwkew"
+
+s = Solution()
+
+print(s.lengthOfLongestSubstring(str))
+
+
+
+
+

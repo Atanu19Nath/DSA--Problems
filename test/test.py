@@ -1,55 +1,50 @@
-class Solution:
-    def lengthOfLongestSubstring(self, s: str) -> int:
+# Definition for singly-linked list.
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
 
 
+def array_to_linkedlist(arr):
+    if not arr:   # empty array
+        return None
 
-        set1 = set()
+    head = ListNode(arr[0])  # first node
+    current = head
 
-        start = 0
+    for val in arr[1:]:
+        current.next = ListNode(val)
+        current = current.next
 
-        max_count = 0
+    return head
 
-        for end in range(len(str)) :
+def removeNthFromEnd(head, n):
         
-        
-            if str[end] in set1:
+        if head.next == None:
 
-                while str[end] in set1:
+            if n == 1:
 
-                    set1.remove(str[start])
+                return None
 
-                    start +=1
+        size = 0
 
-                set1.add(str[end])
+        current = head
 
-            if str[end] not in set1:
+        while current:
 
-                set1.add(str[end])
+            size +=1
 
-            
-            
-            max_count = max(max_count,end-start+1)
+            current= current.next
 
 
+        print(size)
 
-        return max_count
-        
+# 🔹 Example usage
+arr = [1, 2, 3, 4, 5]
+linked_list = array_to_linkedlist(arr)
 
-
-
-
-
-# str = "abcabcbb"
-
-# str = "bbbbb"
-
-str = "pwwkew"
-
-s = Solution()
-
-print(s.lengthOfLongestSubstring(str))
-
-
-
-
-
+# Print linked list to verify
+current = linked_list
+while current:
+    print(current.val, end=" -> ")
+    current = current.next

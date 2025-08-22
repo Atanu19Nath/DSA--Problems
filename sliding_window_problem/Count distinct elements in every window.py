@@ -1,34 +1,3 @@
-geeksforgeeks
-Courses
-Tutorials
-Practice
-Jobs
-A
-4
-
-Search...
-
-
-
-Upgrade to Premium for Doubt Support across all your problems and courses.
-
-Explore Premium
-Redirection Icon
-Refresh
-
-Time (IST)	Status	Marks	Lang	Test Cases	Code
-2025-08-12 19:39:14	Correct	
-4
-python3	1120 / 1120	View
-Python3
-
-
-
-        # Code here
-
-
-
-Custom Input
 class Solution:
     def countDistinct(self, arr, k):
         # Code here

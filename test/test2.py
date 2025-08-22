@@ -1,41 +1,21 @@
 class Solution:
-    def zeroFilledSubarray(self,nums):
+    def maxSubArray(self,arr):
 
-        count = 0
+        maxsum = float('-inf')
 
-        list1 = {}
+        sum = 0
 
-        start = 0
+        for j in range(len(arr)):
 
+            sum = sum + arr[j]
 
-        for end in range(len(nums)):
+            maxsum = max(maxsum,sum)
 
-
-            if nums[end] == 0:
-
-                count = count + end - start + 1
-
-            elif nums[end] != 0:
-
-                while nums[end] != 0:
-
-                    end +=1
-
-                    if end !
+        return maxsum
 
 
-        return count
-
-
-    
 
 s = Solution()
+arr = [-2,1,-3,4,-1,2,1,-5,4]
 
-# nums = [0,0,0,2,0,0]
-
-# nums = [1,3,0,0,2,0,0,4]
-
-nums = [2,10,2019]
-
-
-print(s.zeroFilledSubarray(nums))
+print(s.maxSubArray(arr))

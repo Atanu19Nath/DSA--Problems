@@ -1,18 +1,22 @@
-from googleapiclient.discovery import build
+class Solution:
+    def maxSubArray(self,arr):
 
-youtube = build('youtube', 'v3', developerKey='YOUR_API_KEY')
-playlist_id = 'PLot-Xpze53leU0Ec0VkBhnf4npMRFiNcB'
-titles = []
+        maxsum = float('-inf')
+        for i in range(len(arr)):
 
-request = youtube.playlistItems().list(
-    part="snippet",
-    playlistId=playlist_id,
-    maxResults=50
-)
-while request:
-    response = request.execute()
-    for item in response['items']:
-        titles.append(item['snippet']['title'])
-    request = youtube.playlistItems().list_next(request, response)
+            sum = 0
 
-print("\n".join(titles))
+            for j in range(i,len(arr)):
+
+                sum = sum + arr[j]
+
+                maxsum = max(maxsum,sum)
+
+        return maxsum
+
+
+
+s = Solution()
+arr = [-2,1,-3,4,-1,2,1,-5,4]
+
+print(s.maxSubArray(arr))

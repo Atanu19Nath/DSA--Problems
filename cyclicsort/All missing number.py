@@ -13,14 +13,28 @@ def missing_number(arr):
         else:
 
             i +=1
-    
+
+    print(arr)
+
+    missing_num = []
     for i in range(len(arr)):
 
         if i != arr[i]:
 
-            return i
-            
-arr = [4,0,3,1]
+            missing_num.append(i)
+   
+    max_val = max(arr)
+
+    for i in range(len(arr),max_val):
+
+        if i not in arr:
+
+            missing_num.append(i)
+    
+    
+    return missing_num
+        
+arr = [4,0,3,1,2,6,7,8,9,10,12,13,15,16]
 
 print(missing_number(arr))
 

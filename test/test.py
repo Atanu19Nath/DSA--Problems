@@ -1,22 +1,21 @@
-def missing_number(nums):
+def all_missing_numbers(arr):
     i = 0
-    n = len(nums)
+    n = len(arr)
+
     while i < n:
-        correct_index = nums[i]
-        if nums[i] < n and nums[i] != nums[correct_index]:
-            nums[i], nums[correct_index] = nums[correct_index], nums[i]
+        correct_index = arr[i]
+        if arr[i] < n and arr[i] != arr[correct_index]:
+            arr[i], arr[correct_index] = arr[correct_index], arr[i]
         else:
             i += 1
-    print(nums)
+
+    missing = []
     for i in range(n):
-        if nums[i] != i:
-            return i
-    
+        if arr[i] != i:
+            missing.append(i)
 
-    return n
+    return missing
 
-
-arr = [4,0,3,1]
-
-print(missing_number(arr))
-
+# Example
+arr = [4,0,3,1,2,6,7,8,9,10,12,13,15]
+print(all_missing_numbers(arr))   # [5, 11, 14]

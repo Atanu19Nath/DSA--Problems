@@ -1,24 +1,22 @@
-def merge(arr):
-
-    arr.sort()
-
-    ans = []
-
-    for i in range(len(arr)):
-       
-        if not ans:
-            ans.append(arr[i])
-            
-        elif arr[i][0] <= ans[-1][1]:
-            ans[-1][1] = max(ans[-1][1], arr[i][1])
+def missing_number(nums):
+    i = 0
+    n = len(nums)
+    while i < n:
+        correct_index = nums[i]
+        if nums[i] < n and nums[i] != nums[correct_index]:
+            nums[i], nums[correct_index] = nums[correct_index], nums[i]
         else:
-            ans.append(arr[i])
+            i += 1
+    print(nums)
+    for i in range(n):
+        if nums[i] != i:
+            return i
+    
 
-    return ans
+    return n
 
 
-# arr = [[1, 3], [2, 4],[9, 10],[6, 8]]
-arr = [[7, 8], [1, 5], [2, 4], [4, 6]]
-# arr = [[1, 2], [2, 3]]
+arr = [4,0,3,1]
 
-print(merge(arr))
+print(missing_number(arr))
+

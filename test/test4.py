@@ -1,15 +1,7 @@
-list1 = [10,20,30,40]
+if -3 % 3 == 0:
+    print("ok")
 
-list2 = []
 
-list3 = [90,80,50]
-
-for i in list2:
-
-    list1.append(i)
-
-for i in list3:
-
-    list1.append(i)
-
-print(list1)
+print(4 % 5)
+print (9 % 5)
+print(1%5)

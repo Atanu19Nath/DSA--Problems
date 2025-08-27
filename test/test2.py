@@ -1,21 +1,31 @@
-class Solution:
-    def maxSubArray(self,arr):
+def merge(arr,interval):
 
-        maxsum = float('-inf')
+    arr.sort()
 
-        sum = 0
+    ans = []
 
-        for j in range(len(arr)):
+    for i in range(len(arr)):
+       
+        if not ans:
+            ans.append(arr[i])
+        
+        elif interval[0] <= ans[-1][1]:
 
-            sum = sum + arr[j]
+            ans[-1][1] = max(ans[-1][1],interval[1])
+            
+        elif arr[i][0] <= ans[-1][1]:
 
-            maxsum = max(maxsum,sum)
+            ans[-1][1] = max(ans[-1][1], arr[i][1])
+            
+        else:
+            ans.append(arr[i])
 
-        return maxsum
+    return ans
 
 
 
-s = Solution()
-arr = [-2,1,-3,4,-1,2,1,-5,4]
+arr = [[1,2],[3,5],[6,7],[8,10],[12,16]]
 
-print(s.maxSubArray(arr))
+interval = [4,8]
+
+print(merge(arr,interval))

@@ -1,21 +1,30 @@
-def all_missing_numbers(arr):
-    i = 0
-    n = len(arr)
+def next_greater_elements(nums):
+    n = len(nums)
+    
+    stack = [nums[-1]]
 
-    while i < n:
-        correct_index = arr[i]
-        if arr[i] < n and arr[i] != arr[correct_index]:
-            arr[i], arr[correct_index] = arr[correct_index], arr[i]
+    nums[-1] = -1
+
+    for i in range(n-2,-1,-1):
+
+        val = nums[i]         
+
+        while stack and val >= stack[-1] :
+
+            stack.pop()
+
+        if len(stack) == 0:
+
+            nums[i] = -1
         else:
-            i += 1
 
-    missing = []
-    for i in range(n):
-        if arr[i] != i:
-            missing.append(i)
+            nums[i] = stack[-1]
 
-    return missing
+        stack.append(val)      
+
+    return nums
+
+
 
 # Example
-arr = [4,0,3,1,2,6,7,8,9,10,12,13,15]
-print(all_missing_numbers(arr))   # [5, 11, 14]
+print(next_greater_elements([2,1,2,4,3]))  # [4,2,4,-1,-1]

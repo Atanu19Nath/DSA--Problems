@@ -47,16 +47,20 @@ def postorder(root):
     
     return postorder(root.left) + postorder(root.right) + [root.data]
 
-def treesum(root):
+
+def isexist(root,value):
 
     if root == None:
 
-        return 0
+        return False
     
-    left_subtree = treesum(root.left)
-    right_subtree = treesum(root.right)
+    left_subtree = isexist(root.left,value)
 
-    return root.data + left_subtree + right_subtree
+    right_subtree = isexist(root.right,value)
+
+    return root.data == value or left_subtree or right_subtree
+
+
 
 values = [50, 30, 20, 40, 70, 60, 80] 
 
@@ -69,4 +73,4 @@ for value in values:
 print("preorder = ")
 print(preorder(root))
 
-print("Tree sum = ",treesum(root))
+print("value exist =", isexist(root,70))

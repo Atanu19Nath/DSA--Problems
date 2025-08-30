@@ -54,10 +54,9 @@ def treemax(root):
 
         return float("-inf")
 
-    left_subtree = treemax(root.left)
     right_subtree = treemax(root.right)
 
-    return max(root.data,left_subtree,right_subtree)
+    return max(root.data,right_subtree)
 
 
 values = [50, 30, 20, 40, 70, 60, 80] 

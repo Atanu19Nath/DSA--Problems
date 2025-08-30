@@ -31,21 +31,6 @@ def preorder(root):
 
     return [root.data] + preorder(root.left) + preorder(root.right)
 
-def inorder(root):
-
-    if root == None:
-
-        return []
-    
-    return inorder(root.left) + [root.data] + inorder(root.right)
-
-def postorder(root):
-
-    if root == None:
-
-        return []
-    
-    return postorder(root.left) + postorder(root.right) + [root.data]
 
 
 values = [50, 30, 20, 40, 70, 60, 80] 
@@ -58,7 +43,3 @@ for value in values:
 
 print("preorder = ")
 print(preorder(root))
-print("inorder = ")
-print(inorder(root))
-print("postorder = ")
-print(postorder(root))

@@ -31,21 +31,6 @@ def preorder(root):
 
     return [root.data] + preorder(root.left) + preorder(root.right)
 
-def inorder(root):
-
-    if root == None:
-
-        return []
-    
-    return inorder(root.left) + [root.data] + inorder(root.right)
-
-def postorder(root):
-
-    if root == None:
-
-        return []
-    
-    return postorder(root.left) + postorder(root.right) + [root.data]
 
 # recursive approach [ O(n)]
 def btreemax(root):

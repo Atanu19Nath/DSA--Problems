@@ -48,6 +48,27 @@ def postorder(root):
     return postorder(root.left) + postorder(root.right) + [root.data]
 
 
+def isexist(root,value):
+
+    if root == None:
+
+        return False
+    
+    if root.data == value:
+
+        return True
+    
+    if value < root.data:
+        
+        return isexist(root.left,value)
+
+    else:
+
+        return isexist(root.right,value)
+
+
+
+
 values = [50, 30, 20, 40, 70, 60, 80] 
 
 root = None
@@ -58,7 +79,5 @@ for value in values:
 
 print("preorder = ")
 print(preorder(root))
-print("inorder = ")
-print(inorder(root))
-print("postorder = ")
-print(postorder(root))
+
+print("value exist =", isexist(root,70))

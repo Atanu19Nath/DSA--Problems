@@ -47,6 +47,17 @@ def postorder(root):
     
     return postorder(root.left) + postorder(root.right) + [root.data]
 
+def treesum(root):
+
+    if root == None:
+
+        return 0
+    
+    left_subtree = treesum(root.left)
+    right_subtree = treesum(root.right)
+
+    return root.data + left_subtree + right_subtree
+
 
 values = [50, 30, 20, 40, 70, 60, 80] 
 
@@ -58,7 +69,5 @@ for value in values:
 
 print("preorder = ")
 print(preorder(root))
-print("inorder = ")
-print(inorder(root))
-print("postorder = ")
-print(postorder(root))
+
+print("Tree sum = ",treesum(root))

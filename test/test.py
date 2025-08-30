@@ -1,49 +1,51 @@
-class Solution:
-    def dailyTemperatures(self, arr):
+class Node:
 
-        stack = []
+    def __init__(self,data):
 
-        index = {}
+        self.data = data
+        self.left = None
+        self.right = None
 
-        n = len(arr)
+def insert(root,value):
 
-        if arr:
+    if root == None:
 
-            stack.append(arr[-1])
-            index[arr[-1]] = n -1
-            arr[-1] = 0
-            
+        new_node = Node(value)  
+        return new_node
         
-        for i in range(n-2,-1,-1):
+    elif value < root.data:
 
-            val = arr[i]
+        root.left = insert(root.left,value)
 
-            while stack and val >= stack[-1]:
+    elif value > root.data:
 
-                del index[stack[-1]]
+        root.right = insert(root.right,value)
 
-                stack.pop()
-                
-            
-            if len(stack) == 0:
+    return root
 
-                arr[i] = 0
+def preorder(root):
 
-            else:
+    if root == None:
 
-                arr[i] = index[stack[-1]] - i
+        return
+        
+    print(root.data,end=" ")
 
-            stack.append(val)
-
-            index[val] = i
-
-        return arr
+    preorder(root.left)
+    preorder(root.right)
+    
 
 
-s = Solution()
 
-# temperatures = [73,74,75,71,69,72,76,73]
 
-temperatures = [89,62,70,58,47,47,46,76,100,70]
+values = [50, 30, 20, 40, 70, 60, 80] 
 
-print(s.dailyTemperatures(temperatures))
+root = None
+
+for value in values:
+
+    root = insert(root,value)
+
+
+print(preorder(root))
+

@@ -1,31 +1,53 @@
-def merge(arr,interval):
+class StockSpanner:
 
-    arr.sort()
+    def __init__(self):
 
-    ans = []
+        self.stack = []
+        self.index = {}
+        self.count = 0
 
-    for i in range(len(arr)):
-       
-        if not ans:
-            ans.append(arr[i])
+    def next(self, price: int) -> int:
+
+        if len(self.stack) == 0:
+
+            self.stack.append(price)
+            self.index[price] = self.count
+
+            self.count +=1
+
+            return 1
+
+        val = price
+
+        while self.stack and val > self.stack[-1]:
+
+            self.stack.pop()
         
-        elif interval[0] <= ans[-1][1]:
+        if len(self.stack) == 0:
 
-            ans[-1][1] = max(ans[-1][1],interval[1])
-            
-        elif arr[i][0] <= ans[-1][1]:
+            return self.count + 1
 
-            ans[-1][1] = max(ans[-1][1], arr[i][1])
-            
         else:
-            ans.append(arr[i])
 
-    return ans
+            price = self.count - self.index[self.stack[-1]]
+
+        self.stack.append(val)
+
+        if val not in self.index:
+
+            self.index[val] = self.count
+        
+        self.count +=1
+        
+
+        return price
+        
 
 
+s = StockSpanner()
 
-arr = [[1,2],[3,5],[6,7],[8,10],[12,16]]
+print(s.next(100))
 
-interval = [4,8]
-
-print(merge(arr,interval))
+# print(s.stack[-1])
+# print(s.index[s.stack[-1]])
+print(s.next(80))

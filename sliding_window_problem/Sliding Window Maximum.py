@@ -1,8 +1,9 @@
 from collections import deque
 
-class Solution:
-    def maxSlidingWindow(self, arr, k):
 
+class Solution:
+    def maxSlidingWindow(self, arr, k) :
+        
 
         start = 0
 
@@ -16,44 +17,34 @@ class Solution:
 
             if len(ans) == 0:
 
-                ans.append(arr[end])
+                ans.append(end)
 
             else:
             
-                while ans and arr[end] > ans[-1]:
+                while ans and arr[end] > arr[ans[-1]]:
+
 
                     ans.pop()
 
-                ans.append(arr[end])
+                ans.append(end)
                                 
 
             if end - start + 1 == k:
 
-                print(ans)
+                result.append(arr[ans[0]])
 
-                result.append(ans[0])
+                if start == ans[0]:
 
-                if arr[start] == ans[0]:
-
-                    ans.remove(ans[0])
-
+                    ans.remove(start)
                 start +=1
     
         return result
-
-
-
+    
 s = Solution()
 
-# nums = [1,3,-1,-3,5,3,6,7]
+nums = [1,3,-1,-3,5,3,6,7]
 # nums = [1,3,1,2,0,5]
-# nums = [9,10,9,-7,-4,-8,2,-6]
-nums = [4, 4, 4, 2, 2, 2]
 k = 3
 
-# k = 5
-
-# k = 3
-
 print(s.maxSlidingWindow(nums,k))
-        
+            

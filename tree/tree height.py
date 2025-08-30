@@ -47,22 +47,18 @@ def postorder(root):
     
     return postorder(root.left) + postorder(root.right) + [root.data]
 
-def treesum(root):
+
+def treeheight(root):
 
     if root == None:
 
         return 0
     
-    left_subtree = treesum(root.left)
-    right_subtree = treesum(root.right)
+    left_subtree = treeheight(root.left)
 
-    return root.data + left_subtree + right_subtree
+    right_subtree = treeheight(root.right)
 
-def treemax(root):
-
-    if root == None:
-
-        return 
+    return 1 + max(left_subtree,right_subtree)
 
 
 values = [50, 30, 20, 40, 70, 60, 80] 
@@ -76,6 +72,4 @@ for value in values:
 print("preorder = ")
 print(preorder(root))
 
-print("Tree sum = ",treesum(root))
-
-print("Tree Max =", treemax(root))
+print("Tree height =", treeheight(root))

@@ -31,17 +31,14 @@ def preorder(root):
 
     return [root.data] + preorder(root.left) + preorder(root.right)
 
-def treeheight(root):
+
+def count_node(root):
 
     if root == None:
 
         return 0
     
-    left_subtree = treeheight(root.left)
-
-    right_subtree = treeheight(root.right)
-
-    return 1 + max(left_subtree,right_subtree)
+    return 1 + count_node(root.left) + count_node(root.right)
 
 values = [50, 30, 20, 40, 70, 60, 80] 
 
@@ -54,4 +51,5 @@ for value in values:
 print("preorder = ")
 print(preorder(root))
 
-print("height = ",treeheight(root))
+print(" total node = ",count_node(root))
+

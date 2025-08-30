@@ -1,3 +1,5 @@
+from collections import deque
+
 class Node:
 
     def __init__(self,data):
@@ -47,6 +49,40 @@ def postorder(root):
     
     return postorder(root.left) + postorder(root.right) + [root.data]
 
+def levelorder(root):
+
+
+    queue = deque()
+
+    if root == None:
+
+        return []
+    
+    result = []
+    
+    queue.append(root)
+
+    while queue:
+
+        current = queue.popleft()
+
+        result.append(current.data)
+
+        if current.left:
+
+            queue.append(current.left)
+        
+        if current.right:
+
+            queue.append(current.right)
+
+        
+
+    return result
+
+
+
+
 
 values = [50, 30, 20, 40, 70, 60, 80] 
 
@@ -62,3 +98,4 @@ print("inorder = ")
 print(inorder(root))
 print("postorder = ")
 print(postorder(root))
+print("level order = ",levelorder(root))

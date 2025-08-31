@@ -31,22 +31,6 @@ def preorder(root):
 
     return [root.data] + preorder(root.left) + preorder(root.right)
 
-def inorder(root):
-
-    if root == None:
-
-        return []
-    
-    return inorder(root.left) + [root.data] + inorder(root.right)
-
-def postorder(root):
-
-    if root == None:
-
-        return []
-    
-    return postorder(root.left) + postorder(root.right) + [root.data]
-
 def isBST(root):
 
     
@@ -87,9 +71,5 @@ for value in values:
 
 print("preorder = ")
 print(preorder(root))
-print("inorder = ")
-print(inorder(root))
-print("postorder = ")
-print(postorder(root))
 
 print("check is it BST = ",isBST(root))

@@ -33,110 +33,45 @@ def preorder(root):
 
     return [root.data] + preorder(root.left) + preorder(root.right)
 
-def inorder(root):
+def inorder_itr(root):
 
-    if root == None:
+    stack = []
+    result = []
+    current = root
 
-        return []
+    while stack or current:
+        while current:
+            stack.append(current)
+            current = current.left
+        current = stack.pop()
+        result.append(current.data)
+        current = current.right
     
-    return inorder(root.left) + [root.data] + inorder(root.right)
+    return result
 
-def postorder(root):
+def kthsmall(root,k):
 
-    if root == None:
+    stack = []
+    current = root
 
-        return []
+    count = 0
+
+    while stack or current:
+        while current:
+            stack.append(current)
+            current = current.left
+        current = stack.pop()
+        count +=1
+
+        if count == k:
+
+            return current.data
+
+        current = current.right
     
-    return postorder(root.left) + postorder(root.right) + [root.data]
-
-def isBST(root):
-
-    
-    def helper(root,lower_range,higher_range):
-            
-            if root == None:
-
-                return True
-            
-            if root.data <= lower_range or root.data >= higher_range:
-
-                return False
-
-                
-            left_subtree = helper(root.left,lower_range,root.data)
-
-            right_subtree = helper(root.right,root.data,higher_range)  
-
-
-            return left_subtree and right_subtree   
-    
-    lower_range  = float('-inf')
-    higher_range = float('inf')
-    
-    return helper(root,lower_range,higher_range)
-
-def BFS_presuc(root,key):
-
-    if root == None:
-
-        return -1,-1
-    
-    queue = deque()
-
-
-    pre = Node(float("-inf"))
-    suc = Node(float("inf"))
-
-
-    queue.append(root)
-
-    while queue:
-
-        current = queue.popleft()
-
-        if current.data < key :
-
-            if current.data > pre.data:
-
-                pre = current
-
-        if current.data > key:
-
-            if current.data < suc.data:
-
-                suc = current
-
-        if current.left:
-
-            queue.append(current.left)
-
-        if current.right:
-
-            queue.append(current.right)
-
-        
-    if pre.data == float("-inf") and suc.data == float("inf"):
-            
-        return Node(-1),Node(-1)
-            
-    elif pre.data == float("-inf"):
-            
-        return Node(-1),suc
-        
-    elif suc.data == float("inf"):
-            
-        return pre,Node(-1)
-            
-    else:
-            
-        return pre, suc
-            
-    
-
-
+    return -1
 
 values = [50, 30, 20, 40, 70, 60, 80] 
-
 
 root = None
 
@@ -146,9 +81,6 @@ for value in values:
 
 print("preorder = ")
 print(preorder(root))
-
-
-pre , suc = BFS_presuc(root,65)
-
-print("predesessor : ",pre.data)
-print("Successor : ",suc.data)
+print("inorder = ")
+print(inorder_itr(root))
+print("Kth Smallest = ",kthsmall(root,3))

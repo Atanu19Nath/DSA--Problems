@@ -83,9 +83,9 @@ def inorder_presuc(root,key):
     
     current = root
 
-    pre = Node(-1)
+    pre = None
 
-    suc = Node(-1)
+    suc = None
 
     while current:
     

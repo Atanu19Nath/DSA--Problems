@@ -130,10 +130,58 @@ def BFS_presuc(root,key):
     else:
             
         return pre, suc
-            
     
+def inorder_presuc(root,key):
 
+    if root == None:
 
+        return Node(-1),Node(-1)
+    
+    current = root
+
+    pre = Node(-1)
+
+    suc = Node(-1)
+
+    while current:
+    
+        if current.data < key :
+
+            pre = current
+            current = current.right
+
+        elif current.data > key:
+
+            suc = current
+
+            current = current.left
+
+        else:
+
+            if current.left:
+
+                temp = current.left
+
+                while temp.right:
+
+                    temp = temp.right
+
+                pre = temp
+            
+            if current.right:
+
+                temp = current.right
+
+                while temp.left:
+
+                    temp = temp.left
+
+                suc = temp
+
+            break  
+
+    return pre,suc
+            
 
 values = [50, 30, 20, 40, 70, 60, 80] 
 
@@ -148,7 +196,8 @@ print("preorder = ")
 print(preorder(root))
 
 
-pre , suc = BFS_presuc(root,65)
+pre , suc = inorder_presuc(root,100)
+
 
 print("predesessor : ",pre.data)
 print("Successor : ",suc.data)

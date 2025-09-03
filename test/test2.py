@@ -1,53 +1,146 @@
-class StockSpanner:
+from collections import deque
 
-    def __init__(self):
+class Node:
 
-        self.stack = []
-        self.index = {}
-        self.count = 0
+    def __init__(self,data):
 
-    def next(self, price: int) -> int:
+        self.data = data
+        self.left = None
+        self.right = None
 
-        if len(self.stack) == 0:
+def insert(root,value):
 
-            self.stack.append(price)
-            self.index[price] = self.count
+    if root == None:
 
-            self.count +=1
-
-            return 1
-
-        val = price
-
-        while self.stack and val > self.stack[-1]:
-
-            self.stack.pop()
+        new_node = Node(value)  
+        return new_node
         
-        if len(self.stack) == 0:
+    elif value < root.data:
 
-            return self.count + 1
+        root.left = insert(root.left,value)
+
+    elif value > root.data:
+
+        root.right = insert(root.right,value)
+
+    return root
+
+def preorder(root):
+
+    if root == None:
+
+        return []
+
+    return [root.data] + preorder(root.left) + preorder(root.right)
+
+def inorder(root):
+
+    if root == None:
+
+        return []
+    
+    return inorder(root.left) + [root.data] + inorder(root.right)
+
+def postorder(root):
+
+    if root == None:
+
+        return []
+    
+    return postorder(root.left) + postorder(root.right) + [root.data]
+
+def isBST(root):
+
+    
+    def helper(root,lower_range,higher_range):
+            
+            if root == None:
+
+                return True
+            
+            if root.data <= lower_range or root.data >= higher_range:
+
+                return False
+
+                
+            left_subtree = helper(root.left,lower_range,root.data)
+
+            right_subtree = helper(root.right,root.data,higher_range)  
+
+
+            return left_subtree and right_subtree   
+    
+    lower_range  = float('-inf')
+    higher_range = float('inf')
+    
+    return helper(root,lower_range,higher_range)
+
+def inorder_presuc(root,key):
+
+    if root == None:
+
+        return Node(-1),Node(-1)
+    
+    current = root
+
+    pre = Node(-1)
+
+    suc = Node(-1)
+
+    while current:
+    
+        if current.data < key :
+
+            pre = current
+            current = current.right
+
+        elif current.data > key:
+
+            suc = current
+
+            current = current.left
 
         else:
 
-            price = self.count - self.index[self.stack[-1]]
+            if current.left:
 
-        self.stack.append(val)
+                temp = current.left
 
-        if val not in self.index:
+                while temp.right:
 
-            self.index[val] = self.count
-        
-        self.count +=1
-        
+                    temp = temp.right
 
-        return price
-        
+                pre = temp
+            
+            if current.right:
+
+                temp = current.right
+
+                while temp.left:
+
+                    temp = temp.left
+
+                suc = temp
+
+            break  
+
+    return pre,suc
+    
+
+values = [50, 30, 20, 40, 70, 60, 80] 
 
 
-s = StockSpanner()
+root = None
 
-print(s.next(100))
+for value in values:
 
-# print(s.stack[-1])
-# print(s.index[s.stack[-1]])
-print(s.next(80))
+    root = insert(root,value)
+
+print("preorder = ")
+print(preorder(root))
+
+
+pre , suc = inorder_presuc(root,65)
+
+print("predesessor : ",pre.data)
+print("Successor : ",suc.data)

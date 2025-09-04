@@ -106,7 +106,7 @@ def path(root,key):
 
     while current:
 
-        queue.append(current.data)
+        path.append(current.data)
 
         if key < current.data:
 
@@ -118,7 +118,7 @@ def path(root,key):
 
         elif key == current.data:
 
-            return queue
+            return path
 
                 
     return -1

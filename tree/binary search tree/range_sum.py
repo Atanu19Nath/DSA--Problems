@@ -33,44 +33,6 @@ def preorder(root):
 
     return [root.data] + preorder(root.left) + preorder(root.right)
 
-def rrl(root):
-
-    if root == None:
-
-        return []
-    
-    return  rrl(root.right) + [root.data] + rrl(root.left)
-
-def kthlargest(root,k):
-
-    if root == None:
-
-        return -1
-    
-    stack = []
-    count = 0
-
-    current = root
-
-    while stack or current:
-
-        while current:
-
-            stack.append(current)
-            current = current.right
-
-        temp = stack.pop()
-
-        count +=1
-
-        if count == k:
-            
-            return temp.data
-        
-        current = temp.left
-
-    return -1
-
 def range_sum(root,l,r):
 
     if root == None:
@@ -95,9 +57,7 @@ def range_sum(root,l,r):
                 break
 
         temp = stack.pop()
-
-        print(temp.data)
-
+        
         if temp.data >= l and temp.data <= r:
 
             rsum = rsum + temp.data
@@ -144,10 +104,6 @@ for value in values:
 
 print("preorder = ")
 print(preorder(root))
-
-print("right,root,left= ", rrl(root))
-
-print("kthlargest = ",kthlargest(root,3))
 
 
 print("Range sum = ", range_sum(root,20,60))

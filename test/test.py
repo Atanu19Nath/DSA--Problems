@@ -34,36 +34,50 @@ def preorder(root):
     return [root.data] + preorder(root.left) + preorder(root.right)
 
 
-def leaf_sum(root):
+def paths(root):
 
     if root == None:
 
-        return -1
+        return []
     
-    current = root
     stack = []
 
-    sum = 0
+    queue = []
 
-    while stack or current :
+    result = []
+
+    current = root
+
+    while stack or current:
 
         while current:
 
             stack.append(current)
+
+            queue.append(current.data)
+
             current = current.left
 
         temp = stack.pop()
 
         if temp.left == None and temp.right == None:
 
-            sum = sum + temp.data
-        
+            ans = queue.copy()
+
+            result.append(ans)
+
+            queue.pop()
+
+    
         current = temp.right
 
-    return sum
 
-        
-    
+    return result
+
+
+
+
+
 
 values = [50, 30, 20, 40, 70, 60, 80] 
 
@@ -76,4 +90,4 @@ for value in values:
 print("preorder = ")
 print(preorder(root))
 
-print( "sum of all leaf = ",leaf_sum(root))
+print("All path from root to leaf = ",paths(root))

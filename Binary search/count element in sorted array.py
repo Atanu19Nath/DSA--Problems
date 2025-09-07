@@ -40,21 +40,15 @@ class Solution:
             return ans
 
 
-        first = helper(arr,k,True)
-
-        last = helper(arr,k,False)
+        first = helper(arr, k, True)
         
-        # print(first,last)
-        
-        
-        if first == -1 and last == -1:
+        if first == -1:
             
             return 0
             
-        else:
-            
-            return last - first +1
-
+        last = helper(arr, k, False)
+        
+        return last - first + 1
 
         
 

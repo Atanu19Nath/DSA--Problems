@@ -3,13 +3,13 @@ class Solution:
         # Code Here
         
         
-        i = 0 
-        j = len(arr)-1
+        start = 0 
+        end = len(arr)-1
         ans = -1
         
-        while i <= j:
+        while start <= end:
             
-            mid = i + (j - i) //2
+            mid = start + (end - start) //2
 
             print ("mid = ",mid)
             
@@ -17,15 +17,15 @@ class Solution:
                 
                 ans = mid
                 
-                j = mid -1
+                end = mid -1
                 
             elif k > arr[mid] :
                 
-                i = mid + 1
+                start = mid + 1
                 
             else:
                 
-                j = mid -1
+                end = mid -1
             
         
         return ans 

@@ -55,11 +55,15 @@ def count_rotation3(arr):
         next = (mid + 1) % n
         pre = (mid + n - 1) % n
 
+        print("mid = ",mid, "pre = ",pre,"next = ",next)
+
+
         if arr[mid] <= arr[pre] and arr[mid] <= arr[next]:
 
             return mid
         
         elif arr[start] <= arr[mid]:
+
 
             start = mid + 1
 
@@ -71,11 +75,9 @@ def count_rotation3(arr):
 
 
 
-
-
 # arr = [15, 18, 20, 30, 40, 5, 6, 7]
 
-arr = [5, 6, 7, 8, 9, 10, 1, 2, 3]
+arr = [25,5, 6, 7, 8, 9, 10, 11, 12,13,14]
 
 print(count_rotation(arr))
 

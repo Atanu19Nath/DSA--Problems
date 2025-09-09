@@ -1,38 +1,49 @@
-def count_rotation2(arr,k):
+def search(arr,k):
 
     start = 0
 
     end = len(arr) -1
 
-    ans = -1
+    n = len(arr)
 
+    while start <= end:
 
-    while start <=end:
+        mid = start + (end - start) //2
 
-        mid = start + ( end - start )//2
+        print("start = ",start ," end = ", end, "mid = ",mid)
 
-        if arr[mid] == k :
+        if arr[mid] == k:
 
             return mid
 
-        elif arr[mid] > arr[end]:
+        elif arr[start] <= arr[mid]:
 
-            if k < arr[mid] :
+            if arr[start] <= k < arr[mid]:
 
-                end = mid
+                end = mid -1
+
             else:
-                start = mid
+
+                start = mid + 1
 
         else:
 
-            start = mid +1 
+            if arr[mid] < k  <= arr[end] :
 
-    
-    return ans
+                start = mid + 1
+
+            else: 
+
+                end = mid -1
+
+
+    return -1
 
 
 # arr = [15, 18, 20, 30, 40, 5, 6, 7]
 
-arr = [5, 6, 7, 8, 9, 10, 1, 2, 3]
+# arr = [1,2,3,5,6,7,8,9,10]
 
-print(count_rotation2(arr,10))
+arr = [15, 18, 20, 30, 40, 5, 6, 7]
+
+print(search(arr,6))

@@ -1,38 +1,49 @@
-def count_rotation3(arr,x):
+def find_minimum_element(arr,x):
+
 
     start = 0
 
     end = len(arr) -1
 
-    n = len(arr)
+    mini = float('inf')
+
+    ans = -1
 
     while start <= end:
 
-        mid = start + (end - start) //2
+        mid = start + ( end - start )//2
 
-        next = (mid + 1) % n
-    
-        print("mid = ",mid,"next = ",next)
+        if arr[mid] == x :
 
-
-        if arr[mid] == x:
-
-            return next
+            return arr[mid]
         
-        elif x > arr[mid]:
+        diff = abs(arr[mid] - x)
+
+        if diff < mini or (diff == mini and ans < arr[mid]):
+
+            mini = diff
+
+            ans = arr[mid]
+
+        if x > arr[mid]:
 
             start = mid + 1
 
         else:
 
-            end = mid -1
+            end = mid - 1
 
-    return -1
+    
+    print(arr[start],arr[end])
+
+    return ans 
+        
 
 
+        
 
-# arr = [15, 18, 20, 30, 40, 5, 6, 7]
+arr = [1,3,8,11,15]
 
-arr = ["a","c","f","h"]
+x = 12
 
-print(count_rotation3(arr,'m'))
+print(find_minimum_element(arr,x))

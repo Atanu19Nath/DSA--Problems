@@ -1,4 +1,4 @@
-def count_rotation3(arr,x):
+def next_alph(arr,x):
 
     start = 0
 
@@ -35,4 +35,4 @@ def count_rotation3(arr,x):
 
 arr = ["a","c","f","h"]
 
-print(count_rotation3(arr,'m'))
+print(next_alph(arr,'m'))

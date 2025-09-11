@@ -77,6 +77,9 @@ def search_element_Biotonic_array(arr,k):
     while start <=end:
         
         mid = start + ( end - start )//2
+        if arr[mid] == k:
+            
+            return mid 
         
         if arr[mid-1] < arr[mid] and arr[mid] > arr[mid+1]:
             
@@ -91,10 +94,7 @@ def search_element_Biotonic_array(arr,k):
                 
                 return ans2
             
-                
-                
-            
-        
+    
         
         elif arr[mid] < arr[mid+1]:
             

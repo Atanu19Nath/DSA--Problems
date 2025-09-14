@@ -1,41 +1,44 @@
-def find_element(arr,key):
-    
-    
-    row = len(arr)
-    
-    column = len(arr[0])
-    
-    
-    i = 0
-    
-    j = column - 1
-    
-    
-    while i >= 0 and i < row and j >= 0 and j < column:
+def searchInsert(nums, target) -> int:
+
+    start = 0
+
+    end = len(nums) - 1
+
+    while start <= end:
+
+        mid = start + ( end - start)//2
         
-        print(arr[i][j])
+        print(start , mid, end )
+
+        if nums[mid] == target:
+
+            return mid
+
+        elif target > nums[mid-1] and target < nums[mid]:
+
+            return mid
+
+        elif target > nums[mid]:
+
+            start = mid + 1
         
-        if arr[i][j] == key :
-            
-            return True
-        
-        elif arr[i][j] > key :
-            
-            
-            j -= 1
-            
         else:
+
+            end = mid - 1
             
-            i +=1
-            
-    return False
-            
+    if target > nums[len(nums) -1]:
+        
+        print("this one")
+    elif target < nums[0]:
+        
+        return 0
     
+    else:
+        return -1
 
+nums = [1,3,5,6]
 
-matrix = [[1,3,5,7],
-          [10,11,16,20],
-          [23,30,34,60]]
-target = 3
+print(nums)
+target = 0
 
-print(find_element(matrix,target))
+print(searchInsert(nums,target))

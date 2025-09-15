@@ -1,44 +1,54 @@
-def searchInsert(nums, target) -> int:
-
+def next_greater(arr,x):
+    
     start = 0
-
-    end = len(nums) - 1
-
+    
+    end = len(arr) -1
+    
+    ans = -1
+    
     while start <= end:
-
+        
         mid = start + ( end - start)//2
         
-        print(start , mid, end )
-
-        if nums[mid] == target:
-
-            return mid
-
-        elif target > nums[mid-1] and target < nums[mid]:
-
-            return mid
-
-        elif target > nums[mid]:
-
-            start = mid + 1
+        print(start, mid ,end)
         
-        else:
-
-            end = mid - 1
+        if arr[mid] == x and mid < len(arr) -1:
             
-    if target > nums[len(nums) -1]:
+            ans = arr[mid+1]
+            
+            start = mid +  1
+            
+        elif mid > 0 and arr[mid-1] < target  and target < arr[mid]:
+            
+            ans = arr[mid]
+            
+            start = mid + 1
+            
+        elif x > arr[mid]:
+            
+            start = mid +  1
+            
+        else:
+            
+            end = mid -1
+            
+    if ans == -1:
         
-        print("this one")
-    elif target < nums[0]:
+        return arr[0]
+    
+    elif ans == target:
         
-        return 0
+        return arr[0]
     
     else:
-        return -1
+        return ans
+        
 
-nums = [1,3,5,6]
+letters = ["e","e","g","g"]
 
-print(nums)
-target = 0
+target = "g"
 
-print(searchInsert(nums,target))
+print(letters)
+
+
+print(next_greater(letters,target))

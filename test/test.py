@@ -1,54 +1,102 @@
-def next_greater(arr,x):
+def helper(arr,start,end):
     
-    start = 0
     
-    end = len(arr) -1
+    print("helper1")
+    
+    n = len(arr)
     
     ans = -1
     
-    while start <= end:
+    while start <=end:       
         
-        mid = start + ( end - start)//2
+        mid = start + ( end - start )//2
         
-        print(start, mid ,end)
+        pre = (mid + n - 1) % n
+
+        next = (mid + 1) % n
         
-        if arr[mid] == x and mid < len(arr) -1:
-            
-            ans = arr[mid+1]
-            
-            start = mid +  1
-            
-        elif mid > 0 and arr[mid-1] < target  and target < arr[mid]:
-            
-            ans = arr[mid]
-            
-            start = mid + 1
-            
-        elif x > arr[mid]:
-            
-            start = mid +  1
-            
-        else:
-            
-            end = mid -1
-            
-    if ans == -1:
-        
-        return arr[0]
+        print(pre,mid,next)
     
-    elif ans == target:
+        if arr[pre] != arr[mid] and arr[mid] != arr[next]:
+
+            ans = arr[mid]  
+            
+        end = mid - 1
         
-        return arr[0]
+    return ans
+        
+def helper2(arr,start,end):
+    
+    n = len(arr)
+    
+    ans = -1
+    
+    print("helper2")
+    
+    while start <=end:
+        
+        
+        
+        mid = start + ( end - start )//2
+        
+        pre = (mid + n - 1) % n
+
+        next = (mid + 1) % n
+        
+        print(pre,mid,next)
+
+        if arr[pre] != arr[mid] and arr[mid] != arr[next]:
+
+            ans = arr[mid]            
+        
+        start = mid + 1
+        
+    return ans
+
+
+
+def singleNonDuplicate(arr):
+
+    start = 0
+
+    end = len(arr) -1
+
+    n = len(arr)
+
+    mid = start + ( end - start )//2
+
+    pre = (mid + n - 1) % n
+
+    next = (mid + 1) % n
+    
+    print(pre,mid,next)
+    
+
+    if arr[pre] != arr[mid] and arr[mid] != arr[next]:
+
+        return arr[mid]
     
     else:
-        return ans
+        print("else")
+        ans1 = helper(arr,start, pre)
         
+        print("ans1 = ",ans1)
+        
+        if ans1 != -1:
+            
+            return ans1
+        
+        ans2 = helper2(arr,next,end)
+        
+        if ans2 !=-1:
+            
+            return ans2
+        
+    return -1
 
-letters = ["e","e","g","g"]
-
-target = "g"
-
-print(letters)
+nums = [1,1,2,3,3,4,4,8,8]
 
 
-print(next_greater(letters,target))
+print(nums)
+
+print(singleNonDuplicate(nums))

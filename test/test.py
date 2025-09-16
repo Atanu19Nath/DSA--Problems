@@ -1,61 +1,4 @@
-def helper(arr,start,end):
-    
-    
-    print("helper1")
-    
-    n = len(arr)
-    
-    ans = -1
-    
-    while start <=end:       
-        
-        mid = start + ( end - start )//2
-        
-        pre = (mid + n - 1) % n
-
-        next = (mid + 1) % n
-        
-        print(pre,mid,next)
-    
-        if arr[pre] != arr[mid] and arr[mid] != arr[next]:
-
-            ans = arr[mid]  
-            
-        end = mid - 1
-        
-    return ans
-        
-def helper2(arr,start,end):
-    
-    n = len(arr)
-    
-    ans = -1
-    
-    print("helper2")
-    
-    while start <=end:
-        
-        
-        
-        mid = start + ( end - start )//2
-        
-        pre = (mid + n - 1) % n
-
-        next = (mid + 1) % n
-        
-        print(pre,mid,next)
-
-        if arr[pre] != arr[mid] and arr[mid] != arr[next]:
-
-            ans = arr[mid]            
-        
-        start = mid + 1
-        
-    return ans
-
-
-
-def singleNonDuplicate(arr):
+def check(arr):
 
     start = 0
 
@@ -63,40 +6,45 @@ def singleNonDuplicate(arr):
 
     n = len(arr)
 
-    mid = start + ( end - start )//2
-
-    pre = (mid + n - 1) % n
-
-    next = (mid + 1) % n
     
-    print(pre,mid,next)
-    
-
-    if arr[pre] != arr[mid] and arr[mid] != arr[next]:
-
-        return arr[mid]
-    
-    else:
-        print("else")
-        ans1 = helper(arr,start, pre)
+    while start <= end :
         
-        print("ans1 = ",ans1)
+        mid = start + ( end - start )//2
+
+        pre = (mid + n - 1) % n
+
+        next = (mid + 1) % n
         
-        if ans1 != -1:
+        print(pre,mid,next)
+        
+        if arr[mid] < arr[pre] and arr[mid] < arr[next]:
             
-            return ans1
+            return mid
         
-        ans2 = helper2(arr,next,end)
-        
-        if ans2 !=-1:
+        elif arr[start] <= arr[mid]:
             
-            return ans2
-        
+            start = mid + 1
+            
+        else:
+            
+            end = mid - 1
+            
+        if arr[0] < arr[n-1]:
+            
+            return 0
+            
     return -1
+        
+    
+    
+    
+# arr = [7, 9, 11, 12, 5]
 
-nums = [1,1,2,3,3,4,4,8,8]
+# arr = [15, 18, 2, 3, 6, 12]
 
+# arr = [7, 9, 11, 12, 15]
 
-print(nums)
+arr = [2,1,3,4]
 
-print(singleNonDuplicate(nums))
+print(check(arr))
+    
